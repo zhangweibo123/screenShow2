@@ -12,6 +12,107 @@
            <div class="title">模具车间设备OEE</div>
       </div>
       <div class="content">
+          <div class="centre">
+              <div id="chartCenter" style="width: 3.2rem;height: 3.2rem;margin-top: 1.84rem;margin-left:2rem;float: left;"></div>
+              <div  v-if="charData">
+                   <span style="position: absolute;font-size: 0.25rem;top: 2.75rem;left: 3rem;">本周已完成</span>
+                   <span style="position: absolute;font-size: 0.2rem;top: 4.6rem;left:2.9rem;">周计划 :</span>
+                   <span class="textCenter" style="font-size: 0.64rem;;top: 3.1rem;left: 2.9rem;position: absolute;">{{charData.allWeekPlanMap.finished}}</span>
+                   <span style="position: absolute;font-size: 0.26rem;top: 4.56rem;left: 3.7rem;">{{charData.allWeekPlanMap.plan}}</span>
+              </div>
+          </div>
+          <div>
+              <div class="chartCard cardsmall">
+                  <img class="leftTop" src="../assets/img/border1.png" alt="">
+                  <img class="rightTop" src="../assets/img/border2.png" alt="">
+                  <img class="rightbottom" src="../assets/img/border3.png" alt="">
+                  <img class="leftBottom" src="../assets/img/border4.png" alt="">
+                  <div style="width: 100%;font-size: 0.2rem;color: #0B8CFF;padding-top: 0.06rem;padding-left: 0.4rem;">C10 产线</div>
+                  <div id="smallChart1" style="width: 1.1rem;height: 1.1rem;margin-top: 0.1rem;margin-left: 0.8rem;float: left;"></div>
+                  <div id="smallChart2"  style="width: 1.1rem;height: 1.1rem;margin-top: 0.1rem;margin-left: 1.5rem;float: left;"></div>
+                  <div class="smallTextContent" v-if="charData">
+                       <span class="inlineBlock" style="position: absolute;top: 0.7rem;left: 1.07rem;font-size: 0.24rem;">{{Number(charData.planTofinishMap.C10.weekPlan.finished)  + Number(charData.planTofinishMap.C10.weekPlan.unFinished)}}</span>
+                       <span class="inlineBlock" style="position: absolute;top: 1.1rem;left: 1.07rem;font-size: 0.09rem;">周计划</span>
+                       <span style="color: #0B8CFF;font-size: 0.2rem;position: absolute;top: 0.5rem;left: 2.1rem;">{{charData.planTofinishMap.C10.weekPlan.finished}}个</span>
+                       <span style="color: white;font-size: 0.12rem;position: absolute;top: 0.8rem;left: 2.1rem;">已完成</span>
+                       <span style="color: white;font-size: 0.2rem;position: absolute;top: 1.05rem;left: 2.1rem;">{{charData.planTofinishMap.C10.weekPlan.unFinished}}个</span>
+                       <span style="color: white;font-size: 0.12rem;position: absolute;top: 1.28rem;left: 2.1rem;">未完成</span>
+
+                       <span class="inlineBlock" style="position: absolute;top: 0.7rem;left: 3.68rem;font-size: 0.24rem;">{{Number(charData.planTofinishMap.C10.dayPlan.finished)  + Number(charData.planTofinishMap.C10.dayPlan.unFinished)}}</span>
+                       <span class="inlineBlock" style="position: absolute;top: 1.1rem;left: 3.68rem;font-size: 0.09rem;">日计划</span>
+                       <span style="color: #0B8CFF;font-size: 0.2rem;position: absolute;top: 0.5rem;left: 4.7rem;">{{charData.planTofinishMap.C10.dayPlan.finished}}个</span>
+                       <span style="color: white;font-size: 0.12rem;position: absolute;top: 0.8rem;left: 4.7rem;">已完成</span>
+                       <span style="color: white;font-size: 0.2rem;position: absolute;top: 1.05rem;left: 4.7rem;">{{charData.planTofinishMap.C10.dayPlan.unFinished}}个</span>
+                       <span style="color: white;font-size: 0.12rem;position: absolute;top: 1.28rem;left: 4.7rem;">未完成</span>
+                  </div>
+              </div>
+              <div class="chartCard cardsmall">
+                  <img class="leftTop" src="../assets/img/border1.png" alt="">
+                  <img class="rightTop" src="../assets/img/border2.png" alt="">
+                  <img class="rightbottom" src="../assets/img/border3.png" alt="">
+                  <img class="leftBottom" src="../assets/img/border4.png" alt="">
+                   <div style="width: 100%;font-size: 0.2rem;color: #04D7F9 ;padding-top: 0.06rem;padding-left: 0.4rem;">C13 产线</div>
+                   <div id="smallChart3" style="width: 1.1rem;height: 1.1rem;margin-top: 0.1rem;margin-left: 0.8rem;float: left;"></div>
+                   <div id="smallChart4"  style="width: 1.1rem;height: 1.1rem;margin-top: 0.1rem;margin-left: 1.5rem;float: left;"></div>
+                   <div class="smallTextContent" v-if="charData">
+                        <span class="inlineBlock" style="position: absolute;top: 0.7rem;left: 1.07rem;font-size: 0.24rem;">{{Number(charData.planTofinishMap.C13.weekPlan.finished)  + Number(charData.planTofinishMap.C13.weekPlan.unFinished)}}</span>
+                        <span class="inlineBlock" style="position: absolute;top: 1.1rem;left: 1.1rem;font-size: 0.09rem;">周计划</span>
+                        <span style="color: #0B8CFF;font-size: 0.2rem;position: absolute;top: 0.5rem;left: 2.1rem;">{{charData.planTofinishMap.C13.weekPlan.finished}}个</span>
+                        <span style="color: white;font-size: 0.12rem;position: absolute;top: 0.8rem;left: 2.1rem;">已完成</span>
+                        <span style="color: white;font-size: 0.2rem;position: absolute;top: 1.05rem;left: 2.1rem;">{{charData.planTofinishMap.C13.weekPlan.unFinished}}个</span>
+                        <span style="color: white;font-size: 0.12rem;position: absolute;top: 1.28rem;left: 2.1rem;">未完成</span>
+
+                        <span class="inlineBlock" style="position: absolute;top: 0.7rem;left: 3.68rem;font-size: 0.24rem;">{{Number(charData.planTofinishMap.C13.dayPlan.finished)  + Number(charData.planTofinishMap.C13.dayPlan.unFinished)}}</span>
+                        <span class="inlineBlock" style="position: absolute;top: 1.1rem;left: 3.68rem;font-size: 0.09rem;">日计划</span>
+                        <span style="color: #0B8CFF;font-size: 0.2rem;position: absolute;top: 0.5rem;left: 4.7rem;">{{charData.planTofinishMap.C13.dayPlan.finished}}个</span>
+                        <span style="color: white;font-size: 0.12rem;position: absolute;top: 0.8rem;left: 4.7rem;">已完成</span>
+                        <span style="color: white;font-size: 0.2rem;position: absolute;top: 1.05rem;;left: 4.7rem;">{{charData.planTofinishMap.C13.dayPlan.unFinished}}个</span>
+                        <span style="color: white;font-size: 0.12rem;position: absolute;top: 1.28rem;left: 4.7rem;">未完成</span>
+                   </div>
+              </div>
+              <div class="chartCard cardsmall">
+                  <img class="leftTop" src="../assets/img/border1.png" alt="">
+                  <img class="rightTop" src="../assets/img/border2.png" alt="">
+                  <img class="rightbottom" src="../assets/img/border3.png" alt="">
+                  <img class="leftBottom" src="../assets/img/border4.png" alt="">
+                   <div style="width: 100%;font-size: 0.2rem;color: #5B37CD ;padding-top: 0.06rem;padding-left: 0.4rem;">CSS45T3 产线</div>
+                   <div id="smallChart5" style="width: 1.1rem;height: 1.1rem;margin-top: 0.1rem;margin-left: 0.8rem;float: left;"></div>
+                   <div id="smallChart6"  style="width: 1.1rem;height: 1.1rem;margin-top: 0.1rem;margin-left: 1.5rem;float: left;"></div>
+                   <div class="smallTextContent" v-if="charData">
+                        <span class="inlineBlock" style="position: absolute;top: 0.7rem;left: 1.07rem;font-size: 0.24rem;">{{Number(charData.planTofinishMap.CSS45T3.weekPlan.finished)  + Number(charData.planTofinishMap.CSS45T3.weekPlan.unFinished)}}</span>
+                        <span class="inlineBlock" style="position: absolute;top: 1.1rem;left: 1.07rem;font-size: 0.09rem;">周计划</span>
+                        <span style="color: #0B8CFF;font-size: 0.2rem;position: absolute;top: 0.5rem;left: 2.1rem;">{{charData.planTofinishMap.CSS45T3.weekPlan.finished}}个</span>
+                        <span style="color: white;font-size: 0.12rem;position: absolute;top: 0.8rem;left: 2.1rem;">已完成</span>
+                        <span style="color: white;font-size: 0.2rem;position: absolute;top: 1.05rem;left: 2.1rem;">{{charData.planTofinishMap.CSS45T3.weekPlan.unFinished}}个</span>
+                        <span style="color: white;font-size: 0.12rem;position: absolute;top: 1.28rem;left: 2.1rem;">未完成</span>
+
+                        <span  class="inlineBlock" style="position: absolute;top: 0.7rem;left: 3.68rem;font-size: 0.24rem;">{{Number(charData.planTofinishMap.CSS45T3.dayPlan.finished)  + Number(charData.planTofinishMap.CSS45T3.dayPlan.unFinished)}}</span>
+                        <span  class="inlineBlock" style="position: absolute;top: 1.1rem;left: 3.7rem;font-size: 0.09rem;">周计划</span>
+                        <span style="color: #0B8CFF;font-size: 0.2rem;position: absolute;top: 0.5rem;left: 4.7rem;">{{charData.planTofinishMap.CSS45T3.dayPlan.finished}}个</span>
+                        <span style="color: white;font-size: 0.12rem;position: absolute;top: 0.8rem;left: 4.7rem;">已完成</span>
+                        <span style="color: white;font-size: 0.2rem;position: absolute;top: 1.05rem;;left: 4.7rem;">{{charData.planTofinishMap.CSS45T3.dayPlan.unFinished}}个</span>
+                        <span style="color: white;font-size: 0.12rem;position: absolute;top: 1.28rem;left: 4.7rem;">未完成</span>
+                   </div>
+              </div>
+          </div>
+          <div style="position: absolute;right: 0.2rem;top: 0rem;">
+              <div class="chartCard cardcenter">
+                  <img class="leftTop" src="../assets/img/border1.png" alt="">
+                  <img class="rightTop" src="../assets/img/border2.png" alt="">
+                  <img class="rightbottom" src="../assets/img/border3.png" alt="">
+                  <img class="leftBottom" src="../assets/img/border4.png" alt="">
+                  <div class="cenTitle">目标达成率</div>
+                  <div id="centerChart1" style="width: 5.6rem;height: 2.3rem;margin-left: 0.1rem;margin-top: 0.05rem;"></div>
+              </div>
+              <div class="chartCard cardcenter">
+                  <img class="leftTop" src="../assets/img/border1.png" alt="">
+                  <img class="rightTop" src="../assets/img/border2.png" alt="">
+                  <img class="rightbottom" src="../assets/img/border3.png" alt="">
+                  <img class="leftBottom" src="../assets/img/border4.png" alt="">
+                  <div class="cenTitle">不良率分析</div>
+                  <div id="centerChart2" style="width: 5.6rem;height: 2.3rem;margin-left: 0.1rem;margin-top: 0.05rem;"></div>
+              </div>
+          </div>
           <div style="position: absolute;left: 0.2rem;width: 98%;">
               <div class="chartCard cardbig">
                   <img class="leftTop" src="../assets/img/border1.png" alt="">
@@ -21,7 +122,51 @@
                   <div class="bigTitle">近一周内计划产量和实际产量</div>
                   <div id="bigchartLeft" style="width: 9.4rem;height: 3rem;margin-top: 0.2rem;margin-left: 0.02rem;"></div>
               </div>
+              <div class="chartCard cardbig" style="float: right;">
+                  <img class="leftTop" src="../assets/img/border1.png" alt="">
+                  <img class="rightTop" src="../assets/img/border2.png" alt="">
+                  <img class="rightbottom" src="../assets/img/border3.png" alt="">
+                  <img class="leftBottom" src="../assets/img/border4.png" alt="">
+                  <div class="bigTitle">加工不良和毛坯不良占比</div>
+                  <div id="bigchart1" style="width: 2.6rem;height:1.5rem;margin-top: 1.1rem;float: left;margin-left: 0.4rem;"></div>
+                  <div id="bigchart2" style="width: 2.6rem;height:1.5rem;margin-top: 1.1rem;float: left;margin-left: 0.4rem;"></div>
+                  <div id="bigchart3" style="width: 2.6rem;height:1.5rem;margin-top: 1.1rem;float: left;margin-left: 0.4rem;"></div>
+                  <div>
+                      <span style="position: absolute;top: 1rem;left: 1.5rem;font-size: 0.2rem;color: #0B8CFF;">C10</span>
+                      <span style="position: absolute;top: 1rem;left: 4.5rem;font-size: 0.2rem;color: #04D7F9;">C13</span>
+                      <span style="position: absolute;top: 1rem;left: 7.2rem;font-size: 0.2rem;color: #5B37CD;">CSS45T3</span>
+                      <div v-if="charData" style="font-size: 0.1rem;position: absolute;top: 3.1rem;left: 1rem;">
+                        <p>加工不良 数量{{charData.rejectRatioMap.C10.processReject.number}} 占比:{{charData.rejectRatioMap.C10.processReject.ratio}}</p>
+                        <p>毛坯不良 数量{{charData.rejectRatioMap.C10.workBlankReject.number}} 占比:{{charData.rejectRatioMap.C10.workBlankReject.ratio}}</p>
+                      </div>
+                     <div v-if="charData" style="font-size: 0.1rem;position: absolute;top: 3.1rem;left: 4rem;">
+                        <p>加工不良 数量{{charData.rejectRatioMap.C13.processReject.number}} 占比:{{charData.rejectRatioMap.C13.processReject.ratio}}</p>
+                        <p>毛坯不良 数量{{charData.rejectRatioMap.C13.workBlankReject.number}} 占比:{{charData.rejectRatioMap.C13.workBlankReject.ratio}}</p>
+                      </div>
+                      <div v-if="charData" style="font-size: 0.1rem;position: absolute;top: 3.1rem;left: 7rem;">
+                        <p>加工不良 数量{{charData.rejectRatioMap.CSS45T3.processReject.number}} 占比:{{charData.rejectRatioMap.CSS45T3.processReject.ratio}}</p>
+                        <p>毛坯不良 数量{{charData.rejectRatioMap.CSS45T3.workBlankReject.number}} 占比:{{charData.rejectRatioMap.CSS45T3.workBlankReject.ratio}}</p>
+                      </div>
+                      <div style="position: absolute;left: 5rem;top: 0.7rem;vertical-align: bottom;">
+                        <span style="display: inline-block;float: left ;font-size: 0.14rem;line-height: 0.14rem;margin-right: 0.2rem;">毛坯不良</span>
+                        <span style="display: inline-block;width: 0.14rem;height: 0.14rem;float: left ;background: #70e1ff ;border-radius: 2px;margin-right: 0.1rem;"></span>
+                        <span style="display: inline-block;width: 0.14rem;height: 0.14rem;float: left ;background: #b9eb78 ;border-radius: 2px;margin-right: 0.1rem;"></span>
+                        <span style="display: inline-block;width: 0.14rem;height: 0.14rem;float: left ;background: #4693eb ;border-radius: 2px;margin-right: 0.1rem;"></span>
+                        <span style="display: inline-block;width: 0.14rem;height: 0.14rem;float: left ;background: #f5a41f ;border-radius: 2px;margin-right: 0.1rem;"></span>
+                        <span style="display: inline-block;width: 0.14rem;height: 0.14rem;float: left ;background: #f3e60e ;border-radius: 2px;margin-right: 0.1rem;"></span>
+                        <span style="display: inline-block;width: 0.14rem;height: 0.14rem;float: left ;background: #d23878 ;border-radius: 2px;margin-right: 0.1rem;"></span>
+                        <span style="display: inline-block;float: left ;font-size: 0.14rem;margin-right: 0.2rem;line-height: 0.14rem;">加工不良</span>
+                        <span style="display: inline-block;width: 0.14rem;height: 0.14rem;float: left ;background: #00d8ff ;border-radius: 2px;margin-right: 0.1rem;"></span>
+                        <span style="display: inline-block;width: 0.14rem;height: 0.14rem;float: left ;background: #900ffd ;border-radius: 2px;margin-right: 0.1rem;"></span>
+                        <span style="display: inline-block;width: 0.14rem;height: 0.14rem;float: left ;background: #34dab2 ;border-radius: 2px;margin-right: 0.1rem;"></span>
+                        <span style="display: inline-block;width: 0.14rem;height: 0.14rem;float: left ;background: #4898c9 ;border-radius: 2px;margin-right: 0.1rem;"></span>
+                      </div>
+                  </div>
+
+              </div>
           </div>
+
+
       </div>
   </div>
 </template>
@@ -55,7 +200,7 @@ export default {
   mounted(){
     let self = this
     this.getChartData()
-    // this.socker()
+    this.socker()
     setInterval(() => {
         self.getChartData()
     }, 60000)
@@ -111,9 +256,10 @@ export default {
             self.date = nowDete
           },
         getChartData:function(){
-          $axios.get('http://101.132.242.183:8004/app/rest/dashboard/project').then(function(res){
-              console.log(res)
-              this.charData = JSON.parse(res.data.data)
+          $axios.get('http://118.190.37.4:8020/app/rest/v2/services/ymt_ProduceDashboardService/getDashBoardData').then(function(res){
+            // $axios.get('https://atomtran.com:8443/app/rest/v2/services/mes_ProduceDashboardService/getDashBoardData').then(function(res){
+              // this.charData = res.data.data
+              this.charData = JSON.parse(res.data).data
               console.log(this.charData)
               this.drawsmall();
           }.bind(this))
