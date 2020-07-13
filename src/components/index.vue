@@ -24,7 +24,8 @@
         <div class="bigTitle">{{ key }}</div>
         <div
           :id="'lineChart' + index"
-          style="width: 100%;height: 100%;margin-left: 0.02rem;"
+          class="lineChart"
+          style="height:20vw"
         ></div>
       </div>
     </div>
@@ -34,6 +35,7 @@
 <script>
 import $axios from "axios";
 import lineOption from "../js/echartOption";
+import oeedata from "../js/oeeData"
 export default {
   name: "index",
   data() {
@@ -96,13 +98,19 @@ export default {
       self.date = nowDete;
     },
     getChartData: function() {
-      $axios.get("http://101.132.242.183:8004/app/rest/dashboard/oee").then(
-        function(res) {
-          this.charData = JSON.parse(res.data.data);
-          console.log(this.charData);
-          this.drawsmall();
-        }.bind(this)
-      );
+      // $axios.get("http://101.132.242.183:8004/app/rest/dashboard/oee").then(
+      //   function(res) {
+      //     this.charData = JSON.parse(res.data.data);
+      //     console.log(this.charData);
+      //     this.drawsmall();
+      //   }.bind(this)
+      // );
+      console.log(oeedata)
+      this.charData = oeedata.data;
+      
+      this.$nextTick(() => {
+        this.drawsmall();
+      });
     },
     drawsmall() {
       let self = this;
@@ -196,6 +204,11 @@ export default {
 }
 .chartCard {
   position: relative;
+}
+.lineChart{
+  width: 30vw;
+  margin: 1.3vw;
+  height: 3.64rem;
 }
 .chartCard img.rightbottom {
   position: absolute;
