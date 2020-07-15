@@ -1,7 +1,8 @@
 const lineOption = function (xDate, yDate, lineColor) {
   let obj = {
+    color: ['#62ABFF'],
     xAxis: {
-      type: "category",
+      type: 'category',
       data: xDate,
       nameTextStyle: {
         fontStyle: 'normal',
@@ -18,27 +19,23 @@ const lineOption = function (xDate, yDate, lineColor) {
         rotate: 40
       }
     },
-
-    yAxis: [
-      {
-        type: 'value',
-        axisLabel: {
-          textStyle: {
-            color: '#fff'
-          }
+    yAxis: {
+      type: 'value',
+      axisLabel: {
+        formatter: '{value} %',
+        textStyle: {
+          color: '#fff'
         }
-      },
-
-    ],
-    series: [
-      {
-        data: yDate,
-        type: "line",
-        itemStyle: { color: '#62ABFF' },
-        lineStyle: { color: lineColor },
       }
-    ]
-  }
+    },
+    series: [{
+      data: yDate,
+      type: 'bar',
+      backgroundStyle: {
+        color: 'blue'
+      }
+    }]
+  };
   return obj
 }
 export default lineOption

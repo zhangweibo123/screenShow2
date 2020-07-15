@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import index from '@/components/index'
+import screen1 from '@/components/screen1'
+import screen2 from '@/components/screen2'
 
 Vue.use(Router)
 
@@ -8,8 +9,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'index',
-      component: index
-    }
+      name: 'screen1',
+      component: screen1
+    },
+    {
+      path: '/screen2',
+      name: 'screen2',
+      component: screen2
+    },
   ]
 })
