@@ -22,7 +22,7 @@
         <div id="topChart" style="height:37vh"></div>
       </div>
       <!-- 未开工项目 -->
-      <div class="chartCard cardbig" style="width: 25vw">
+      <div class="chartCard cardbig" style="width: 25vw;">
         <img class="leftTop" src="../assets/img/border1.png" alt="" />
         <img class="rightTop" src="../assets/img/border2.png" alt="" />
         <img class="rightbottom" src="../assets/img/border3.png" alt="" />
@@ -31,7 +31,7 @@
         <div
           class="lineChart"
           id="leftChart"
-          style="top: 0.4rem;padding: 10px;height: 33vh;over-flow:auto;"
+          style="top: 0.4rem;padding: 10px;height: 33vh;overflow:auto;"
         >
           <div
             style="position: unset"
@@ -105,13 +105,13 @@ export default {
     let self = this;
     this.getChartData();
     // this.socker()
-    this.timerouter = setTimeout(() => {
-      self.$router.push({ path: "/" });
-    }, 60000);
+    // this.timerouter = setTimeout(() => {
+    //   self.$router.push({ path: "/" });
+    // }, 60000);
   },
   destroyed() {
     //清除定时器
-    clearInterval(this.timerouter);
+    // clearInterval(this.timerouter);
     clearInterval(this.bootomDataTimer);
   },
   methods: {
@@ -144,24 +144,22 @@ export default {
       self.date = nowDete;
     },
     getChartData: function() {
-      $axios.get("http://101.132.242.183:8004/app/rest/dashboard/project").then(
-        function(res) {
+      this.charData  = JSON.parse(window.localStorage.getItem("screen2"))
+      console.log(this.charData)
+      if(this.charData) {
           this.loading = false;
-          this.bottomTitle = res.data.data.title;
-          this.charData = res.data.data;
-          console.log(this.charData);
+          this.bottomTitle = this.charData.title;
           this.drawsmall();
           this.drawsmall2(this.bootomIndex);
           this.bootomDataTimer = setInterval(() => {
             this.drawsmall2(this.bootomIndex);
             if (this.bootomIndex >= this.charData.procedures.length - 1) {
-              this.bootomIndex = 0;
+              this.$router.push({ path: "/" });
             } else {
               this.bootomIndex++;
             }
-          }, 3000);
-        }.bind(this)
-      );
+          }, 60000);
+      }
     },
     drawsmall2(index) {
       let time = 0;
@@ -170,9 +168,17 @@ export default {
       let blue = [];
       let green = [];
       let yellow = [];
+      let blueData = []
+      let yellowData = []
+      let greenData = []
       let rightChart = this.$echarts.init(
         document.getElementById("rightChart")
       );
+      this.charData.procedures[index].orders.forEach(element => {
+        blueData.push(element.blue.join('  '));
+        greenData.push(element.green.join('  '));
+        yellowData.push(element.yellow.join('  '));
+      });
       this.charData.procedures[index].orders.forEach(element => {
         ydata.push(element.procedure);
       });
@@ -186,15 +192,12 @@ export default {
         name: "已完工",
         stack: "总量",
         type: "bar",
+        barWidth: "30",
         label: {
           show: true,
-          position: "insideRight",
+          position: "inside",
           formatter: function(params) {
-            let ccc;
-            self.charData.procedures[self.bootomIndex].orders.forEach((element)=>{
-              ccc = element.green
-            })
-            return ccc
+            return blueData[params.dataIndex]
           }
         },
         data: blue
@@ -203,15 +206,12 @@ export default {
         name: "进行中",
         stack: "总量",
         type: "bar",
+        barWidth: "30",
         label: {
           show: true,
-          position: "insideRight",
+          position: "inside",
           formatter: function(params) {
-            let ccc;
-            self.charData.procedures[self.bootomIndex].orders.forEach((element)=>{
-              ccc = element.yellow
-            })
-            return ccc
+            return greenData[params.dataIndex]
           }
         },
         data: green
@@ -220,15 +220,12 @@ export default {
         name: "未开始",
         stack: "总量",
         type: "bar",
+        barWidth: "30",
         label: {
           show: true,
-          position: "insideRight",
+          position: "inside",
           formatter: function(params) {
-            let ccc;
-            self.charData.procedures[self.bootomIndex].orders.forEach((element)=>{
-              ccc = element.blue
-            })
-            return ccc
+            return yellowData[params.dataIndex]
           }
         },
         data: yellow

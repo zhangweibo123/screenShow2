@@ -4,7 +4,7 @@ const hengBarOption = function (xDate, yDate, lineColor) {
     legend: {
       data: ['已完工', '进行中', '未开始'],
       textStyle: {
-        color: 'whiite',
+        color: 'white',
       },
       x: 'right',      //可设定图例在左、右、居中
       y: '10',     //可设定图例在上、下、居中
@@ -20,15 +20,37 @@ const hengBarOption = function (xDate, yDate, lineColor) {
       left: '3%',
       right: '4%',
       bottom: '3%',
+      top: '15%',
       containLabel: true
     },
     xAxis: {
       type: 'value',
-      axisLine: {
-        lineStyle: {
-          color: 'white'
+      max: 20,
+      splitNumber: 21,
+      splitLine: {
+        show: true,
+        lineStyle:{
+            color: ['slategrey'],
+            width: 0,
+            type: 'solid',
+            show: false,
         }
       },
+      axisLine: {
+        lineStyle: {
+          show: 'false',
+          color: 'slategrey'
+        }
+      },
+      axisLabel: {
+        textStyle: {
+          color: '#fff',
+          show: false,
+        },
+        formatter: function () {
+          return "";
+        }
+      }
     },
     yAxis: {
       type: 'category',
@@ -37,6 +59,9 @@ const hengBarOption = function (xDate, yDate, lineColor) {
         textStyle: {
           color: '#fff',
           show: false,
+        },
+        lineStyle: {
+          show: 'false',
         }
       }
     },

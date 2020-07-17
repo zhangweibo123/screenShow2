@@ -1,6 +1,10 @@
 const lineOption = function (xDate, yDate, lineColor) {
   let obj = {
     color: ['#62ABFF'],
+    grid: {
+      top: '5%',
+      bottom:'25%'
+    },
     xAxis: {
       type: 'category',
       data: xDate,

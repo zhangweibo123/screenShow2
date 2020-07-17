@@ -56,6 +56,7 @@ export default {
         0: "日"
       },
       charData: "",
+      charData2:'',
       timer: null,
       bottomTitle: "",
       timerouter: null,
@@ -71,6 +72,7 @@ export default {
   mounted() {
     let self = this;
     this.getChartData();
+    this.getChartData2()
     // this.socker()
      this.timerouter = setTimeout(() => {
       self.$router.push({ path:'/screen2'})
@@ -120,11 +122,20 @@ export default {
           this.drawsmall();
         }.bind(this)
       );
+      
       // console.log(oeedata)
       // this.charData = oeedata.data;
       this.$nextTick(() => {
         this.drawsmall();
       });
+    },
+    getChartData2: function() {
+        $axios.get("http://101.132.242.183:8004/app/rest/dashboard/project").then(
+        function(res) {
+          this.charData2 = res.data.data;
+          window.localStorage.setItem('screen2',JSON.stringify(this.charData2))
+        }.bind(this)
+      );
     },
     drawsmall() {
       let self = this;
@@ -140,9 +151,13 @@ export default {
         }
         let echartName = "lineChart" + index;
         this.$nextTick(() => {
+          let spliceDate = []
+          this.charData[item].date.forEach(element => {
+            spliceDate.push(element.substring(5,7))
+          });
           echartName = this.$echarts.init(document.getElementById(echartName));
           echartName.setOption(
-            lineOption(this.charData[item].date, this.charData[item].oee, lineClorle)
+            lineOption(spliceDate, this.charData[item].oee, lineClorle)
           );
         });
         index++;

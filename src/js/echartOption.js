@@ -5,12 +5,21 @@ const lineOption = function (xDate, yDate, lineColor) {
       data: xDate,
       nameTextStyle: {
         fontStyle: 'normal',
-        fontSize: 10,
+        fontSize: 6,
+      },
+      splitLine: {
+        show: true,
+        lineStyle:{
+             color: ['slategrey'],
+             width: 1,
+            type: 'dashed'
+        }
       },
       // nameRotate: 60,
       axisLine: {
         lineStyle: {
-          color: 'white'
+          color: 'slategrey',
+          ontWeight: 'lighter'
         }
       },
       axisLabel: {
@@ -18,13 +27,24 @@ const lineOption = function (xDate, yDate, lineColor) {
         rotate: 40
       }
     },
-
+    grid: {
+      top: '20%',
+      bottom: '25%'
+    },
     yAxis: [
       {
         type: 'value',
+        splitLine: {
+          show: true,
+          lineStyle:{
+               color: ['slategrey'],
+               width: 1,
+              type: 'dashed'
+          }
+      },
         axisLabel: {
           textStyle: {
-            color: '#fff'
+            color: 'slategrey'
           }
         }
       },
@@ -34,7 +54,16 @@ const lineOption = function (xDate, yDate, lineColor) {
       {
         data: yDate,
         type: "line",
-        itemStyle: { color: '#62ABFF' },
+        symbol:'circle',//拐点设置为实心
+        symbolSize:4,//拐点大小
+        itemStyle: {
+          color: lineColor,
+          borderWidth: 0,
+          borderColor: 0,
+          normal: {
+            color: lineColor,
+          }
+        },
         lineStyle: { color: lineColor },
       }
     ]
