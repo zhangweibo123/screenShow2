@@ -25,8 +25,8 @@ const hengBarOption = function (xDate, yDate, lineColor) {
     },
     xAxis: {
       type: 'value',
-      max: 20,
-      splitNumber: 21,
+      max: 15,
+      splitNumber: 16,
       splitLine: {
         show: true,
         lineStyle:{

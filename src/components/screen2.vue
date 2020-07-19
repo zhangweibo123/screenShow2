@@ -158,7 +158,7 @@ export default {
             } else {
               this.bootomIndex++;
             }
-          }, 60000);
+          }, 10000);
       }
     },
     drawsmall2(index) {
@@ -175,9 +175,9 @@ export default {
         document.getElementById("rightChart")
       );
       this.charData.procedures[index].orders.forEach(element => {
-        blueData.push(element.blue.join('  '));
-        greenData.push(element.green.join('  '));
-        yellowData.push(element.yellow.join('  '));
+        blueData.push(element.blue.join('     ｜     '));
+        greenData.push(element.green.join('     ｜     '));
+        yellowData.push(element.yellow.join('     ｜     '));
       });
       this.charData.procedures[index].orders.forEach(element => {
         ydata.push(element.procedure);

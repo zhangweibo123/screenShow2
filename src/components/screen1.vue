@@ -112,7 +112,7 @@ export default {
       self.date = nowDete;
     },
     getChartData: function() {
-      $axios.get("http://101.132.242.183:8004/app/rest/dashboard/oee").then(
+      $axios.get("http://118.190.37.4:9001/app/rest/dashboard/oee").then(
         function(res) {
           this.loading = false
           this.bottomTitle = res.data.data.title;
@@ -130,7 +130,7 @@ export default {
       });
     },
     getChartData2: function() {
-        $axios.get("http://101.132.242.183:8004/app/rest/dashboard/project").then(
+        $axios.get("http://118.190.37.4:9001/app/rest/dashboard/project").then(
         function(res) {
           this.charData2 = res.data.data;
           window.localStorage.setItem('screen2',JSON.stringify(this.charData2))
