@@ -144,40 +144,40 @@ export default {
       self.date = nowDete;
     },
     getChartData: function() {
-      this.charData  = JSON.parse(window.localStorage.getItem("screen2"))
-      console.log(this.charData)
-      if(this.charData) {
-          this.loading = false;
-          this.bottomTitle = this.charData.title;
-          this.drawsmall();
+      this.charData = JSON.parse(window.localStorage.getItem("screen2"));
+      console.log(this.charData);
+      if (this.charData) {
+        this.loading = false;
+        this.bottomTitle = this.charData.title;
+        this.drawsmall();
+        this.drawsmall2(this.bootomIndex);
+        this.bootomDataTimer = setInterval(() => {
+          this.bootomIndex++;
           this.drawsmall2(this.bootomIndex);
-          this.bootomDataTimer = setInterval(() => {
-            this.drawsmall2(this.bootomIndex);
-            if (this.bootomIndex >= this.charData.procedures.length - 1) {
-              this.$router.push({ path: "/" });
-            } else {
-              this.bootomIndex++;
-            }
-          }, 10000);
+        }, 10000);
       }
     },
     drawsmall2(index) {
+      if (!this.charData.procedures[index]) {
+        this.$router.push({ path: "/" });
+        return
+      }
       let time = 0;
       let ydata = [];
       let xdata = [];
       let blue = [];
       let green = [];
       let yellow = [];
-      let blueData = []
-      let yellowData = []
-      let greenData = []
+      let blueData = [];
+      let yellowData = [];
+      let greenData = [];
       let rightChart = this.$echarts.init(
         document.getElementById("rightChart")
       );
       this.charData.procedures[index].orders.forEach(element => {
-        blueData.push(element.blue.join('     ｜     '));
-        greenData.push(element.green.join('     ｜     '));
-        yellowData.push(element.yellow.join('     ｜     '));
+        blueData.push(element.blue.join("   ｜  "));
+        greenData.push(element.green.join("  ｜  "));
+        yellowData.push(element.yellow.join("  ｜  "));
       });
       this.charData.procedures[index].orders.forEach(element => {
         ydata.push(element.procedure);
@@ -187,7 +187,7 @@ export default {
         green.push(element.green.length);
         yellow.push(element.yellow.length);
       });
-      let self = this
+      let self = this;
       xdata.push({
         name: "已完工",
         stack: "总量",
@@ -197,10 +197,10 @@ export default {
           show: true,
           position: "inside",
           formatter: function(params) {
-            return blueData[params.dataIndex]
+            return greenData[params.dataIndex];
           }
         },
-        data: blue
+        data: green
       });
       xdata.push({
         name: "进行中",
@@ -211,10 +211,10 @@ export default {
           show: true,
           position: "inside",
           formatter: function(params) {
-            return greenData[params.dataIndex]
+            return yellowData[params.dataIndex];
           }
         },
-        data: green
+        data: yellow
       });
       xdata.push({
         name: "未开始",
@@ -225,10 +225,10 @@ export default {
           show: true,
           position: "inside",
           formatter: function(params) {
-            return yellowData[params.dataIndex]
+            return blueData[params.dataIndex];
           }
         },
-        data: yellow
+        data: blue
       });
 
       rightChart.setOption(hengBarOption(xdata, ydata));
