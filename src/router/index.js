@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import screen1 from '@/components/screen1'
 import screen2 from '@/components/screen2'
 import index from '@/components/index'
+import oeeDay from '@/components/oeeDay'
 
 Vue.use(Router)
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/index',
       name: 'index',
       component: index
+    },
+    {
+      path: '/oeeDay',
+      name: 'oeeDay',
+      component: oeeDay
     },
   ]
 })

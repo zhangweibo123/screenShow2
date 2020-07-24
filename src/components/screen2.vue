@@ -6,10 +6,13 @@
       <img class="line3" src="../assets/img/line.png" alt="" />
       <img class="line4" src="../assets/img/line.png" alt="" />
       <!-- <div class="headerText">周计划和日计划完成情况</div> -->
+      <div class="companyName">
+        永茂泰模具工厂
+      </div>
+      <div class="title">生产进度看板</div>
       <div class="date">
         {{ date }}
       </div>
-      <div class="title">生产进度看板</div>
     </div>
     <div class="content">
       <!-- 模具生产进度 -->
@@ -18,7 +21,7 @@
         <img class="rightTop" src="../assets/img/border2.png" alt="" />
         <img class="rightbottom" src="../assets/img/border3.png" alt="" />
         <img class="leftBottom" src="../assets/img/border4.png" alt="" />
-        <div class="bigTitle">模具生产进度</div>
+        <div class="bigTitle">项目生产进度</div>
         <div id="topChart" style="height:37vh"></div>
       </div>
       <!-- 未开工项目 -->
@@ -49,7 +52,7 @@
         <img class="rightbottom" src="../assets/img/border3.png" alt="" />
         <img class="leftBottom" src="../assets/img/border4.png" alt="" />
         <div class="bigTitle">加工部品进度</div>
-        <div v-if="charData" style="padding: 0px 10px;">
+        <div v-if="charData" style="padding: 0px 10px;margin-top: -10px;">
           模具编号：{{ charData.procedures[bootomIndex].name }}
         </div>
         <div
@@ -60,9 +63,9 @@
       </div>
     </div>
     <div v-if="bottomTitle" class="bottomTitle">
-      <span>
+      <marquee>
         {{ bottomTitle }}
-      </span>
+      </marquee>
     </div>
   </div>
 </template>
@@ -283,6 +286,15 @@ export default {
   font-size: 0.27rem;
   position: absolute;
   top: 0.09rem;
+  right: 0.4rem;
+  background: linear-gradient(to right, #22ec95, #03c2fa);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.companyName {
+  font-size: 0.27rem;
+  position: absolute;
+  top: 0.09rem;
   left: 0.4rem;
   background: linear-gradient(to right, #22ec95, #03c2fa);
   -webkit-background-clip: text;
@@ -375,13 +387,16 @@ export default {
   line-height: 0.38rem;
 }
 .bottomTitle {
+  margin: auto;
+  width: 70%;
   text-align: center;
+  font-size: 24px;
 }
-.bottomTitle span {
+.bottomTitle marquee {
   display: inline-block;
-  color: transparent;
+  /* color: transparent;
   background: linear-gradient(to right, #22ec95, #03c2fa);
-  -webkit-background-clip: text;
+  -webkit-background-clip: text; */
   /* border: 2px solid white; */
   padding: 0.3rem 4rem;
 }

@@ -9,7 +9,7 @@
       <div class="companyName">
         永茂泰模具工厂
       </div>
-      <div class="title">模具车间设备OEE</div>
+      <div class="title">每日开动率（OEE）目标，实际</div>
       <div class="date">
         {{ date }}
       </div>
@@ -42,7 +42,7 @@
 
 <script>
 import $axios from "axios";
-import lineOption from "../js/echartOption";
+import lineOption from "../js/echartOptionOeeDay";
 import oeedata from "../js/oeeData";
 export default {
   name: "index",
@@ -77,13 +77,13 @@ export default {
     this.getChartData();
     this.getChartData2()
     // this.socker()
-     this.timerouter = setTimeout(() => {
-      self.$router.push({ path:'/screen2'})
-    }, 60000);
+    //  this.timerouter = setTimeout(() => {
+    //   self.$router.push({ path:'/screen2'})
+    // }, 60000);
   },
   destroyed() {
       //清除定时器
-      clearInterval(this.timerouter);
+      // clearInterval(this.timerouter);
   },
   methods: {
     // 自适应rem
@@ -228,7 +228,7 @@ export default {
   font-size: 0.35rem;
   position: absolute;
   top: 0.2rem;
-  left: 8.35rem;
+  left: 7.2rem;
 }
 
 .content {
