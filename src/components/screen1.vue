@@ -7,6 +7,7 @@
       <img class="line4" src="../assets/img/line.png" alt="" />
       <!-- <div class="headerText">周计划和日计划完成情况</div> -->
       <div class="companyName">
+        <img src="../assets/img/logo.png" alt="" />
         永茂泰模具工厂
       </div>
       <div class="title">模具车间设备OEE</div>
@@ -220,6 +221,9 @@ export default {
   background: linear-gradient(to right, #22ec95, #03c2fa);
   -webkit-background-clip: text;
   color: transparent;
+}
+.companyName img {
+  width: 0.3rem;
 }
 .title {
   background: linear-gradient(to right, #22ec95, #03c2fa);

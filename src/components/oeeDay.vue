@@ -7,6 +7,7 @@
       <img class="line4" src="../assets/img/line.png" alt="" />
       <!-- <div class="headerText">周计划和日计划完成情况</div> -->
       <div class="companyName">
+        <img src="../assets/img/logo.png" alt="" />
         永茂泰模具工厂
       </div>
       <div class="title">每日开动率（OEE）目标，实际</div>
@@ -34,7 +35,7 @@
     </div>
     <div v-if="bottomTitle" class="bottomTitle">
       <marquee>
-        {{bottomTitle}}
+        {{ bottomTitle }}
       </marquee>
     </div>
   </div>
@@ -59,11 +60,11 @@ export default {
         0: "日"
       },
       charData: "",
-      charData2:'',
+      charData2: "",
       timer: null,
       bottomTitle: "",
       timerouter: null,
-      loading:true
+      loading: true
     };
   },
   created() {
@@ -75,15 +76,15 @@ export default {
   mounted() {
     let self = this;
     this.getChartData();
-    this.getChartData2()
+    this.getChartData2();
     // this.socker()
     //  this.timerouter = setTimeout(() => {
     //   self.$router.push({ path:'/screen2'})
     // }, 60000);
   },
   destroyed() {
-      //清除定时器
-      // clearInterval(this.timerouter);
+    //清除定时器
+    // clearInterval(this.timerouter);
   },
   methods: {
     // 自适应rem
@@ -115,17 +116,19 @@ export default {
       self.date = nowDete;
     },
     getChartData: function() {
-      $axios.get("http://118.190.37.4:9001/app/rest/dashboard/oee").then(
-        function(res) {
-          this.loading = false
-          this.bottomTitle = res.data.data.title;
-          delete res.data.data.title;
-          this.charData = res.data.data;
-          console.log(this.charData);
-          this.drawsmall();
-        }.bind(this)
-      );
-      
+      $axios
+        .get("http://101.132.242.183:8004/app/rest/dashboard/oeeDaily")
+        .then(
+          function(res) {
+            this.loading = false;
+            this.bottomTitle = res.data.data.title;
+            delete res.data.data.title;
+            this.charData = res.data.data;
+            console.log(this.charData);
+            this.drawsmall();
+          }.bind(this)
+        );
+
       // console.log(oeedata)
       // this.charData = oeedata.data;
       this.$nextTick(() => {
@@ -133,10 +136,13 @@ export default {
       });
     },
     getChartData2: function() {
-        $axios.get("http://118.190.37.4:9001/app/rest/dashboard/project").then(
+      $axios.get("http://118.190.37.4:9001/app/rest/dashboard/project").then(
         function(res) {
           this.charData2 = res.data.data;
-          window.localStorage.setItem('screen2',JSON.stringify(this.charData2))
+          window.localStorage.setItem(
+            "screen2",
+            JSON.stringify(this.charData2)
+          );
         }.bind(this)
       );
     },
@@ -144,23 +150,27 @@ export default {
       let self = this;
       let index = 0;
       for (let item in this.charData) {
-        let lineClorle = ''
-        if(index == 0 || index == 3 || index == 6) {
-          lineClorle = 'blue'
+        let lineClorle = "";
+        if (index == 0 || index == 3 || index == 6) {
+          lineClorle = "blue";
         } else if (index == 1 || index == 4 || index == 7) {
-          lineClorle = 'orange'
+          lineClorle = "orange";
         } else if (index == 2 || index == 5 || index == 8) {
-          lineClorle = 'green'
+          lineClorle = "green";
         }
         let echartName = "lineChart" + index;
         this.$nextTick(() => {
-          let spliceDate = []
+          let spliceDate = [];
           this.charData[item].date.forEach(element => {
-            spliceDate.push(element.substring(5,7))
+            spliceDate.push(element.substring(5, 7));
           });
           echartName = this.$echarts.init(document.getElementById(echartName));
           echartName.setOption(
-            lineOption(spliceDate, this.charData[item].oee, lineClorle)
+            lineOption(
+              this.charData[item].date,
+              this.charData[item].oee,
+              lineClorle
+            )
           );
         });
         index++;
@@ -220,6 +230,9 @@ export default {
   background: linear-gradient(to right, #22ec95, #03c2fa);
   -webkit-background-clip: text;
   color: transparent;
+}
+.companyName img {
+  width: 0.3rem;
 }
 .title {
   background: linear-gradient(to right, #22ec95, #03c2fa);
