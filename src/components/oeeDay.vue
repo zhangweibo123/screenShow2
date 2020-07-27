@@ -77,13 +77,13 @@ export default {
     let self = this;
     this.getChartData();
     this.getChartData2();
-    //  this.timerouter = setTimeout(() => {
-    //   self.$router.push({ path:'/progress'})
-    // }, 60000);
+     this.timerouter = setTimeout(() => {
+      self.$router.push({ path:'/progress'})
+    }, 60000);
   },
   destroyed() {
     //清除定时器
-    // clearInterval(this.timerouter);
+    clearInterval(this.timerouter);
   },
   methods: {
     // 自适应rem

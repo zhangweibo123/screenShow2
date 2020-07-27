@@ -116,13 +116,13 @@ export default {
       this.charData = JSON.parse(window.localStorage.getItem("progress"));
       this.getChartData();
     }
-    // this.timerouter = setTimeout(() => {
-    //   self.$router.push({ path: "/" });
-    // }, 60000);
+    this.timerouter = setTimeout(() => {
+      self.$router.push({ path: "/" });
+    }, 60000);
   },
   destroyed() {
     //清除定时器
-    // clearInterval(this.timerouter);
+    clearInterval(this.timerouter);
     clearInterval(this.bootomDataTimer);
   },
   methods: {
@@ -177,14 +177,14 @@ export default {
       }
     },
     drawsmall2(index) {
-      // if (!this.charData.procedures[index]) {
-      //   this.$router.push({ path: "/" });
-      //   return
-      // }
       if (!this.charData.procedures[index]) {
-        window.localStorage.setItem("progress", "");
-        this.$router.go(0);
+        this.$router.push({ path: "/" });
+        return
       }
+      // if (!this.charData.procedures[index]) {
+      //   window.localStorage.setItem("progress", "");
+      //   this.$router.go(0);
+      // }
       let time = 0;
       let ydata = [];
       let xdata = [];
