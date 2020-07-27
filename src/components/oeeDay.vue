@@ -77,9 +77,8 @@ export default {
     let self = this;
     this.getChartData();
     this.getChartData2();
-    // this.socker()
     //  this.timerouter = setTimeout(() => {
-    //   self.$router.push({ path:'/screen2'})
+    //   self.$router.push({ path:'/progress'})
     // }, 60000);
   },
   destroyed() {
@@ -117,7 +116,7 @@ export default {
     },
     getChartData: function() {
       $axios
-        .get("http://101.132.242.183:8004/app/rest/dashboard/oeeDaily")
+        .get("http://118.190.37.4:9001/app/rest/dashboard/oeeDaily")
         .then(
           function(res) {
             this.loading = false;
@@ -140,7 +139,7 @@ export default {
         function(res) {
           this.charData2 = res.data.data;
           window.localStorage.setItem(
-            "screen2",
+            "progress",
             JSON.stringify(this.charData2)
           );
         }.bind(this)
@@ -261,7 +260,7 @@ export default {
 .cardbig {
   border: 1px solid #5a9bf5;
   width: 31.3vw;
-  margin: 0.5vw;
+  margin: 0.4vw;
   height: 24vh;
   margin-bottom: 0.2rem;
   float: left;

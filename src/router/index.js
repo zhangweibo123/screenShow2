@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import screen1 from '@/components/screen1'
-import screen2 from '@/components/screen2'
+import oeeMonth from '@/components/oeeMonth'
+import progress from '@/components/progress'
 import index from '@/components/index'
 import oeeDay from '@/components/oeeDay'
 
@@ -11,18 +11,18 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'screen1',
-      component: screen1
+      name: 'oeeDay',
+      component: oeeDay
     },
     {
-      path: '/screen2',
-      name: 'screen2',
-      component: screen2
+      path: '/oeeMonth',
+      name: 'oeeMonth',
+      component: oeeMonth
     },
     {
-      path: '/index',
-      name: 'index',
-      component: index
+      path: '/progress',
+      name: 'progress',
+      component: progress
     },
     {
       path: '/oeeDay',

@@ -28,7 +28,7 @@ const lineOption = function (xDate, yDate, lineColor) {
       }
     },
     grid: {
-      top: '20%',
+      top: '22%',
       bottom: '25%'
     },
     yAxis: [
@@ -58,7 +58,7 @@ const lineOption = function (xDate, yDate, lineColor) {
       },
       x: 'right',      //可设定图例在左、右、居中
       y: '10',     //可设定图例在上、下、居中
-      padding: [15, 0, 0, 0],
+      padding: [14, 0, 0, 0],
     },
     series: [
       {

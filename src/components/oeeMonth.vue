@@ -77,14 +77,13 @@ export default {
     let self = this;
     this.getChartData();
     this.getChartData2()
-    // this.socker()
-     this.timerouter = setTimeout(() => {
-      self.$router.push({ path:'/screen2'})
-    }, 60000);
+    //  this.timerouter = setTimeout(() => {
+    //   self.$router.push({ path:'/progress'})
+    // }, 60000);
   },
   destroyed() {
       //清除定时器
-      clearInterval(this.timerouter);
+      // clearInterval(this.timerouter);
   },
   methods: {
     // 自适应rem
@@ -137,7 +136,7 @@ export default {
         $axios.get("http://118.190.37.4:9001/app/rest/dashboard/project").then(
         function(res) {
           this.charData2 = res.data.data;
-          window.localStorage.setItem('screen2',JSON.stringify(this.charData2))
+          window.localStorage.setItem('progress',JSON.stringify(this.charData2))
         }.bind(this)
       );
     },
@@ -252,7 +251,7 @@ export default {
 .cardbig {
   border: 1px solid #5a9bf5;
   width: 31.3vw;
-  margin: 0.5vw;
+  margin: 0.4vw;
   height: 24vh;
   margin-bottom: 0.2rem;
   float: left;

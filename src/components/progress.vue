@@ -107,7 +107,15 @@ export default {
   },
   mounted() {
     let self = this;
-    this.getChartData();
+    if (
+      window.localStorage.getItem("progress") == "undefined" ||
+      window.localStorage.getItem("progress") == ""
+    ) {
+      this.getChartData2();
+    } else {
+      this.charData = JSON.parse(window.localStorage.getItem("progress"));
+      this.getChartData();
+    }
     // this.socker()
     // this.timerouter = setTimeout(() => {
     //   self.$router.push({ path: "/" });
@@ -147,9 +155,17 @@ export default {
       let nowDete = `${year}年${month}月${day}日 星期${self.week[week]} ${hour}:${minute}:${second}`;
       self.date = nowDete;
     },
+    getChartData2: function() {
+      $axios.get("http://118.190.37.4:9001/app/rest/dashboard/project").then(
+        function(res) {
+          if (res.data.code == 200) {
+            this.charData = res.data.data
+            this.getChartData();
+          }
+        }.bind(this)
+      );
+    },
     getChartData: function() {
-      this.charData = JSON.parse(window.localStorage.getItem("screen2"));
-      console.log(this.charData);
       if (this.charData) {
         this.loading = false;
         this.bottomTitle = this.charData.title;
@@ -162,9 +178,13 @@ export default {
       }
     },
     drawsmall2(index) {
+      // if (!this.charData.procedures[index]) {
+      //   this.$router.push({ path: "/" });
+      //   return
+      // }
       if (!this.charData.procedures[index]) {
-        this.$router.push({ path: "/" });
-        return
+        window.localStorage.setItem("progress", "");
+        this.$router.go(0);
       }
       let time = 0;
       let ydata = [];
@@ -196,7 +216,7 @@ export default {
         name: "已完工",
         stack: "总量",
         type: "bar",
-        barWidth: "30",
+        barWidth: "25",
         label: {
           show: true,
           position: "inside",
@@ -210,7 +230,7 @@ export default {
         name: "进行中",
         stack: "总量",
         type: "bar",
-        barWidth: "30",
+        barWidth: "25",
         label: {
           show: true,
           position: "inside",
@@ -224,7 +244,7 @@ export default {
         name: "未开始",
         stack: "总量",
         type: "bar",
-        barWidth: "30",
+        barWidth: "25",
         label: {
           show: true,
           position: "inside",
@@ -331,7 +351,7 @@ export default {
 .cardbig {
   border: 1px solid #5a9bf5;
   width: 31.3vw;
-  margin: 0.5vw;
+  margin: 0.4vw;
   height: 37vh;
   margin-bottom: 0.2rem;
   float: left;
