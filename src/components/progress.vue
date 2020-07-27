@@ -116,7 +116,6 @@ export default {
       this.charData = JSON.parse(window.localStorage.getItem("progress"));
       this.getChartData();
     }
-    // this.socker()
     // this.timerouter = setTimeout(() => {
     //   self.$router.push({ path: "/" });
     // }, 60000);
@@ -351,7 +350,7 @@ export default {
 .cardbig {
   border: 1px solid #5a9bf5;
   width: 31.3vw;
-  margin: 0.4vw;
+  margin: 5px;
   height: 37vh;
   margin-bottom: 0.2rem;
   float: left;

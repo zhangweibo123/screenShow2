@@ -251,7 +251,7 @@ export default {
 .cardbig {
   border: 1px solid #5a9bf5;
   width: 31.3vw;
-  margin: 0.4vw;
+  margin: 5px;
   height: 24vh;
   margin-bottom: 0.2rem;
   float: left;

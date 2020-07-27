@@ -57,7 +57,7 @@ const lineOption = function (xDate, yDate, lineColor) {
         fontSize: 8,
       },
       x: 'right',      //可设定图例在左、右、居中
-      y: '10',     //可设定图例在上、下、居中
+      y: '14',     //可设定图例在上、下、居中
       padding: [14, 0, 0, 0],
     },
     series: [
