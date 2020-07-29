@@ -116,13 +116,13 @@ export default {
       this.charData = JSON.parse(window.localStorage.getItem("progress"));
       this.getChartData();
     }
-    this.timerouter = setTimeout(() => {
-      self.$router.push({ path: "/" });
-    }, 60000);
+    // this.timerouter = setTimeout(() => {
+    //   self.$router.push({ path: "/" });
+    // }, 60000);
   },
   destroyed() {
     //清除定时器
-    clearInterval(this.timerouter);
+    // clearInterval(this.timerouter);
     clearInterval(this.bootomDataTimer);
   },
   methods: {
@@ -155,7 +155,7 @@ export default {
       self.date = nowDete;
     },
     getChartData2: function() {
-      $axios.get("http://118.190.37.4:9001/app/rest/dashboard/project").then(
+      $axios.get("https://ymes.atomtran.com/app/rest/dashboard/project").then(
         function(res) {
           if (res.data.code == 200) {
             this.charData = res.data.data
@@ -165,6 +165,7 @@ export default {
       );
     },
     getChartData: function() {
+      console.log(this.charData)
       if (this.charData) {
         this.loading = false;
         this.bottomTitle = this.charData.title;
