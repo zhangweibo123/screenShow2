@@ -155,7 +155,7 @@ export default {
       self.date = nowDete;
     },
     getChartData2: function() {
-      $axios.get("https://ymes.atomtran.com/app/rest/dashboard/project").then(
+      $axios.get("http://118.190.37.4:9001/app/rest/dashboard/project").then(
         function(res) {
           if (res.data.code == 200) {
             this.charData = res.data.data
