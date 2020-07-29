@@ -116,7 +116,7 @@ export default {
     },
     getChartData: function() {
       $axios
-        .get("http://118.190.37.4:9001/app/rest/dashboard/oeeDaily")
+        .get("https://ymes.atomtran.com/app/rest/dashboard/oeeDaily")
         .then(
           function(res) {
             this.loading = false;
@@ -135,7 +135,7 @@ export default {
       });
     },
     getChartData2: function() {
-      $axios.get("http://118.190.37.4:9001/app/rest/dashboard/project").then(
+      $axios.get("https://ymes.atomtran.com/app/rest/dashboard/project").then(
         function(res) {
           this.charData2 = res.data.data;
           window.localStorage.setItem(
