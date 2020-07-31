@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import oeeMonth from '@/components/oeeMonth'
 import progress from '@/components/progress'
-import index from '@/components/index'
 import oeeDay from '@/components/oeeDay'
 
 Vue.use(Router)
