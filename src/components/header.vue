@@ -1,26 +1,46 @@
 <template>
-    <div class="header">
-      <img class="line1" src="../assets/img/line.png" alt="" />
-      <img class="line2" src="../assets/img/line.png" alt="" />
-      <img class="line3" src="../assets/img/line.png" alt="" />
-      <img class="line4" src="../assets/img/line.png" alt="" />
-      <!-- <div class="headerText">周计划和日计划完成情况</div> -->
-      <div class="companyName">
-        <img src="../assets/img/logo.png" alt="" />
-        永茂泰模具工厂
-      </div>
-      <div class="btngroup">
-        <el-button type="primary" v-if="!isShowStop" @click="start()" icon="el-icon-video-pause"></el-button>
-        <el-button type="primary" v-if="isShowStop" @click="sleep()" icon="el-icon-video-play"></el-button>
-        <el-button type="primary" @click="prev()" icon="el-icon-back"></el-button>
-        <el-button type="primary" @click="next()" icon="el-icon-right"></el-button>
-      </div>
-      <!-- 每日开动率（OEE）目标，实际? -->
-      <div class="title">{{title}}</div>
-      <div class="date">
-        {{ date }}
-      </div>
+  <div class="header">
+    <img class="line1" src="../assets/img/line.png" alt="" />
+    <img class="line2" src="../assets/img/line.png" alt="" />
+    <img class="line3" src="../assets/img/line.png" alt="" />
+    <img class="line4" src="../assets/img/line.png" alt="" />
+    <!-- <div class="headerText">周计划和日计划完成情况</div> -->
+    <div class="companyName">
+      <img src="../assets/img/logo.png" alt="" />
+      永茂泰模具工厂
     </div>
+    <div class="btngroup">
+      <el-button
+        type="primary"
+        v-if="!isShowStop"
+        @click="start()"
+        icon="el-icon-video-pause"
+      ></el-button>
+      <el-button
+        type="primary"
+        v-if="isShowStop"
+        @click="sleep()"
+        icon="el-icon-video-play"
+      ></el-button>
+      <el-button type="primary" @click="prev()" icon="el-icon-back"></el-button>
+      <el-button
+        type="primary"
+        @click="next()"
+        icon="el-icon-right"
+      ></el-button>
+      <el-button
+        type="primary"
+        v-if="$route.path == '/progress'"
+        icon="el-icon-d-arrow-right"
+        @click="progressNext()"
+      ></el-button>
+    </div>
+    <!-- 每日开动率（OEE）目标，实际? -->
+    <div class="title">{{ title }}</div>
+    <div class="date">
+      {{ date }}
+    </div>
+  </div>
 </template>
 
 <script>
@@ -39,7 +59,7 @@ export default {
         5: "五",
         6: "六",
         0: "日"
-      },
+      }
     };
   },
   created() {
@@ -78,33 +98,36 @@ export default {
       self.date = nowDete;
     },
     start() {
-      this.isShowStop = true
-      this.$emit('start');
+      this.isShowStop = true;
+      this.$emit("start");
     },
     sleep() {
-      this.isShowStop = false
-      this.$emit('sleep');
+      this.isShowStop = false;
+      this.$emit("sleep");
     },
-    next(){
-      if(this.$route.path == '/progress'){
-        this.$router.push({path: '/oeeDay'});
-      }else if(this.$route.path == '/oeeDay') {
-        this.$router.push({path: '/progress'});
-      }else if(this.$route.path == '/oeemonth'){
-        this.$router.push({path: '/oeeDay'});
-      }else if(this.$route.path == '/'){
-        this.$router.push({path: '/progress'});
+    next() {
+      if (this.$route.path == "/progress") {
+        this.$router.push({ path: "/oeeDay" });
+      } else if (this.$route.path == "/oeeDay") {
+        this.$router.push({ path: "/progress" });
+      } else if (this.$route.path == "/oeemonth") {
+        this.$router.push({ path: "/oeeDay" });
+      } else if (this.$route.path == "/") {
+        this.$router.push({ path: "/progress" });
       }
     },
-    prev(){
-      if(this.$route.path == '/progress'){
-        this.$router.push({path: '/oeeDay'});
-      }else if(this.$route.path == '/oeeDay') {
-        this.$router.push({path: '/progress'});
-      }else if(this.$route.path == '/oeemonth'){
-        this.$router.push({path: '/oeeDay'});
-      }else if(this.$route.path == '/'){
-        this.$router.push({path: '/progress'});
+    progressNext() {
+      this.$emit("progressNext");
+    },
+    prev() {
+      if (this.$route.path == "/progress") {
+        this.$router.push({ path: "/oeeDay" });
+      } else if (this.$route.path == "/oeeDay") {
+        this.$router.push({ path: "/progress" });
+      } else if (this.$route.path == "/oeemonth") {
+        this.$router.push({ path: "/oeeDay" });
+      } else if (this.$route.path == "/") {
+        this.$router.push({ path: "/progress" });
       }
     }
   }
@@ -216,18 +239,18 @@ export default {
   position: absolute;
   top: 0.2rem;
   left: 50%;
-  transform: translate(-50%,0);
+  transform: translate(-50%, 0);
 }
 .btngroup {
   position: absolute;
   top: 0.1rem;
   left: 3rem;
 }
-.btngroup .el-button{
- padding: 1px 8px;
- font-size: 10px;
- margin-right:1px;
- font-weight: 900;
- background: #0F8CFF;
+.btngroup .el-button {
+  padding: 1px 8px;
+  font-size: 10px;
+  margin-right: 1px;
+  font-weight: 900;
+  background: #0f8cff;
 }
 </style>

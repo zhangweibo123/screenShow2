@@ -4,6 +4,7 @@
       title="生产进度看板"
       @sleep="sleep()"
       @start="start()"
+      @progressNext="progressNext()"
     ></my-header>
     <div class="content">
       <!-- 模具生产进度 -->
@@ -126,6 +127,12 @@ export default {
     },
     start() {
       this.getChartData();
+    },
+    progressNext() {
+      clearInterval(this.bootomDataTimer);
+      this.bootomDataTimer = null
+      this.bootomIndex++;
+      this.drawsmall2(this.bootomIndex);
     },
     // 自适应rem
     setFontSize: function(doc, win) {
