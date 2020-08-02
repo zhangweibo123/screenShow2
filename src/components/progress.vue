@@ -5,6 +5,7 @@
       @sleep="sleep()"
       @start="start()"
       @progressNext="progressNext()"
+      @progressPrev="progressPrev()"
     ></my-header>
     <div class="content">
       <!-- 模具生产进度 -->
@@ -132,6 +133,12 @@ export default {
       clearInterval(this.bootomDataTimer);
       this.bootomDataTimer = null
       this.bootomIndex++;
+      this.drawsmall2(this.bootomIndex);
+    },
+    progressPrev() {
+      clearInterval(this.bootomDataTimer);
+      this.bootomDataTimer = null
+      this.bootomIndex--;
       this.drawsmall2(this.bootomIndex);
     },
     // 自适应rem

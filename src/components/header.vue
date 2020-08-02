@@ -31,6 +31,12 @@
       <el-button
         type="primary"
         v-if="$route.path == '/progress'"
+        icon="el-icon-d-arrow-left"
+        @click="progressPrev()"
+      ></el-button>
+      <el-button
+        type="primary"
+        v-if="$route.path == '/progress'"
         icon="el-icon-d-arrow-right"
         @click="progressNext()"
       ></el-button>
@@ -118,6 +124,9 @@ export default {
     },
     progressNext() {
       this.$emit("progressNext");
+    },
+    progressPrev() {
+      this.$emit("progressPrev")
     },
     prev() {
       if (this.$route.path == "/progress") {
