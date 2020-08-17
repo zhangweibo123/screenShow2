@@ -1,21 +1,21 @@
 <template>
   <div class="index" v-loading="loading" style="min-height:100vh">
-    <div class="header">
-      <img class="line1" src="../assets/img/line.png" alt="" />
-      <img class="line2" src="../assets/img/line.png" alt="" />
-      <img class="line3" src="../assets/img/line.png" alt="" />
-      <img class="line4" src="../assets/img/line.png" alt="" />
-      <!-- <div class="headerText">周计划和日计划完成情况</div> -->
-      <div class="companyName">
-        <img src="../assets/img/logo.png" alt="" />
-        永茂泰模具工厂
-      </div>
-      <div class="title">每日开动率（OEE）目标，实际</div>
-      <div class="date">
-        {{ date }}
-      </div>
-    </div>
+    <my-header
+      title="每日开动率（OEE）目标，实际"
+      @sleep="sleep()"
+      @start="start()"
+    ></my-header>
     <div class="content">
+      <div class="gaird">
+        <span
+          ><div class="blue"></div>
+          每日达成率</span
+        >
+        <span
+          ><div class="yellow"></div>
+          每日目标</span
+        >
+      </div>
       <div
         v-for="(value, key, index) in charData"
         :key="index"
@@ -45,8 +45,12 @@
 import $axios from "axios";
 import lineOption from "../js/echartOptionOeeDay";
 import oeedata from "../js/oeeData";
+import myHeader from "./header";
 export default {
   name: "index",
+  components: {
+    "my-header": myHeader
+  },
   data() {
     return {
       date: "",
@@ -77,8 +81,8 @@ export default {
     let self = this;
     this.getChartData();
     this.getChartData2();
-    //  this.timerouter = setTimeout(() => {
-    //   self.$router.push({ path:'/progress'})
+    // this.timerouter = setTimeout(() => {
+    //   self.$router.push({ path: "/progress" });
     // }, 60000);
   },
   destroyed() {
@@ -86,6 +90,15 @@ export default {
     // clearInterval(this.timerouter);
   },
   methods: {
+    sleep() {
+      clearInterval(this.timerouter);
+      this.timerouter = null;
+    },
+    start() {
+      this.timerouter = setTimeout(() => {
+        self.$router.push({ path: "/progress" });
+      }, 60000);
+    },
     // 自适应rem
     setFontSize: function(doc, win) {
       var docEl = doc.documentElement;
@@ -180,69 +193,6 @@ export default {
 </script>
 
 <style scoped>
-.header {
-  width: 100%;
-  height: 0.81rem;
-  background: url(../assets/img/headbg.png);
-  background-size: 100% 100%;
-  position: relative;
-  margin-bottom: 0.2rem;
-}
-.line1 {
-  position: absolute;
-  top: 0.26rem;
-  left: 3rem;
-  width: 2rem;
-}
-.line2 {
-  position: absolute;
-  top: 0.51rem;
-  left: 8.7rem;
-  width: 2rem;
-}
-.line3 {
-  position: absolute;
-  top: 0.26rem;
-  left: 14rem;
-  width: 2rem;
-}
-.line4 {
-  position: absolute;
-  top: 0.26rem;
-  right: -0.2rem;
-  width: 2rem;
-}
-.date {
-  font-size: 0.27rem;
-  position: absolute;
-  top: 0.09rem;
-  right: 0.4rem;
-  background: linear-gradient(to right, #22ec95, #03c2fa);
-  -webkit-background-clip: text;
-  color: transparent;
-}
-.companyName {
-  font-size: 0.27rem;
-  position: absolute;
-  top: 0.09rem;
-  left: 0.4rem;
-  background: linear-gradient(to right, #22ec95, #03c2fa);
-  -webkit-background-clip: text;
-  color: transparent;
-}
-.companyName img {
-  width: 0.3rem;
-}
-.title {
-  background: linear-gradient(to right, #22ec95, #03c2fa);
-  -webkit-background-clip: text;
-  color: transparent;
-  font-size: 0.35rem;
-  position: absolute;
-  top: 0.2rem;
-  left: 7.2rem;
-}
-
 .content {
   position: relative;
   padding: 0rem 0.2rem;
@@ -326,12 +276,33 @@ export default {
   width: 70%;
   text-align: center;
   font-size: 24px;
+  margin-top: -10px;
 }
 .bottomTitle marquee {
   display: inline-block;
   /* color:transparent; */
   /* background: linear-gradient(to right, #22ec95, #03c2fa); */
   /* -webkit-background-clip: text; */
-  padding: 0.3rem 4rem;
+  padding: 0rem 4rem;
+  margin-top: -10px;
+}
+.gaird {
+  font-size: 12px;
+}
+.gaird .yellow {
+  display: inline-block;
+  width: 0.3rem;
+  height: 0.3rem;
+  background: #ffa502;
+  border-radius: 50%;
+  margin: 0px 10px;
+}
+.gaird .blue {
+  display: inline-block;
+  width: 0.3rem;
+  height: 0.3rem;
+  background: #1402ff;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 </style>

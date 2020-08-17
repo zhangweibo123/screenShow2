@@ -1,20 +1,12 @@
 <template>
   <div class="index" v-loading="loading" style="min-height:100vh">
-    <div class="header">
-      <img class="line1" src="../assets/img/line.png" alt="" />
-      <img class="line2" src="../assets/img/line.png" alt="" />
-      <img class="line3" src="../assets/img/line.png" alt="" />
-      <img class="line4" src="../assets/img/line.png" alt="" />
-      <!-- <div class="headerText">周计划和日计划完成情况</div> -->
-      <div class="companyName">
-        <img src="../assets/img/logo.png" alt="" />
-        永茂泰模具工厂
-      </div>
-      <div class="title">生产进度看板</div>
-      <div class="date">
-        {{ date }}
-      </div>
-    </div>
+    <my-header
+      title="生产进度看板"
+      @sleep="sleep()"
+      @start="start()"
+      @progressNext="progressNext()"
+      @progressPrev="progressPrev()"
+    ></my-header>
     <div class="content">
       <!-- 模具生产进度 -->
       <div class="chartCard cardbig" style="width: 70vw;">
@@ -76,8 +68,12 @@ import $axios from "axios";
 import lineOption from "../js/echartOption";
 import barOption from "../js/barOption";
 import hengBarOption from "../js/hengBarOption";
+import myHeader from "./header";
 export default {
-  name: "index",
+  name: "myprogress",
+  components: {
+    "my-header": myHeader
+  },
   data() {
     return {
       date: "",
@@ -126,6 +122,25 @@ export default {
     clearInterval(this.bootomDataTimer);
   },
   methods: {
+    sleep() {
+      clearInterval(this.bootomDataTimer);
+      this.bootomDataTimer = null
+    },
+    start() {
+      this.getChartData();
+    },
+    progressNext() {
+      clearInterval(this.bootomDataTimer);
+      this.bootomDataTimer = null
+      this.bootomIndex++;
+      this.drawsmall2(this.bootomIndex);
+    },
+    progressPrev() {
+      clearInterval(this.bootomDataTimer);
+      this.bootomDataTimer = null
+      this.bootomIndex--;
+      this.drawsmall2(this.bootomIndex);
+    },
     // 自适应rem
     setFontSize: function(doc, win) {
       var docEl = doc.documentElement;
@@ -158,13 +173,14 @@ export default {
       $axios.get("https://ymes.atomtran.com/app/rest/dashboard/project").then(
         function(res) {
           if (res.data.code == 200) {
-            this.charData = res.data.data
+            this.charData = res.data.data;
             this.getChartData();
           }
         }.bind(this)
       );
     },
     getChartData: function() {
+      console.log(this.charData);
       if (this.charData) {
         this.loading = false;
         this.bottomTitle = this.charData.title;
@@ -177,14 +193,14 @@ export default {
       }
     },
     drawsmall2(index) {
-      // if (!this.charData.procedures[index]) {
-      //   this.$router.push({ path: "/" });
-      //   return
-      // }
       if (!this.charData.procedures[index]) {
-        window.localStorage.setItem("progress", "");
-        this.$router.go(0);
+        this.$router.push({ path: "/" });
+        return;
       }
+      // if (!this.charData.procedures[index]) {
+      //   window.localStorage.setItem("progress", "");
+      //   this.$router.go(0);
+      // }
       let time = 0;
       let ydata = [];
       let xdata = [];
@@ -270,69 +286,6 @@ export default {
 </script>
 
 <style scoped>
-.header {
-  width: 100%;
-  height: 0.81rem;
-  background: url(../assets/img/headbg.png);
-  background-size: 100% 100%;
-  position: relative;
-  margin-bottom: 0.2rem;
-}
-.line1 {
-  position: absolute;
-  top: 0.26rem;
-  left: 3rem;
-  width: 2rem;
-}
-.line2 {
-  position: absolute;
-  top: 0.51rem;
-  left: 8.7rem;
-  width: 2rem;
-}
-.line3 {
-  position: absolute;
-  top: 0.26rem;
-  left: 14rem;
-  width: 2rem;
-}
-.line4 {
-  position: absolute;
-  top: 0.26rem;
-  right: -0.2rem;
-  width: 2rem;
-}
-.date {
-  font-size: 0.27rem;
-  position: absolute;
-  top: 0.09rem;
-  right: 0.4rem;
-  background: linear-gradient(to right, #22ec95, #03c2fa);
-  -webkit-background-clip: text;
-  color: transparent;
-}
-.companyName {
-  font-size: 0.27rem;
-  position: absolute;
-  top: 0.09rem;
-  left: 0.4rem;
-  background: linear-gradient(to right, #22ec95, #03c2fa);
-  -webkit-background-clip: text;
-  color: transparent;
-}
-.companyName img {
-  width: 0.3rem;
-}
-.title {
-  background: linear-gradient(to right, #22ec95, #03c2fa);
-  -webkit-background-clip: text;
-  color: transparent;
-  font-size: 0.35rem;
-  position: absolute;
-  top: 0.2rem;
-  left: 8.6rem;
-}
-
 .content {
   position: relative;
   padding: 0rem 0.2rem;
