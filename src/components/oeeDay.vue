@@ -274,13 +274,15 @@ export default {
   width: 70%;
   text-align: center;
   font-size: 24px;
+  margin-top: -10px;
 }
 .bottomTitle marquee {
   display: inline-block;
   /* color:transparent; */
   /* background: linear-gradient(to right, #22ec95, #03c2fa); */
   /* -webkit-background-clip: text; */
-  padding: 0.3rem 4rem;
+  padding: 0rem 4rem;
+  margin-top: -10px;
 }
 .gaird {
   font-size: 12px;

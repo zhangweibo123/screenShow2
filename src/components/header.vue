@@ -262,4 +262,7 @@ export default {
   font-weight: 900;
   background: #0f8cff;
 }
+.el-button:focus {
+  border: 2px solid rgb(238, 178, 66)!important;
+}
 </style>
