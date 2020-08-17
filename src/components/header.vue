@@ -123,9 +123,11 @@ export default {
       }
     },
     progressNext() {
+      this.isShowStop = false;
       this.$emit("progressNext");
     },
     progressPrev() {
+      this.isShowStop = false;
       this.$emit("progressPrev")
     },
     prev() {

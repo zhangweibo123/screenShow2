@@ -193,14 +193,14 @@ export default {
       }
     },
     drawsmall2(index) {
-      if (!this.charData.procedures[index]) {
-        this.$router.push({ path: "/" });
-        return;
-      }
       // if (!this.charData.procedures[index]) {
-      //   window.localStorage.setItem("progress", "");
-      //   this.$router.go(0);
+      //   this.$router.push({ path: "/" });
+      //   return;
       // }
+      if (!this.charData.procedures[index]) {
+        window.localStorage.setItem("progress", "");
+        this.$router.go(0);
+      }
       let time = 0;
       let ydata = [];
       let xdata = [];
